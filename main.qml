@@ -18,6 +18,7 @@ ApplicationWindow {
     property int section: 2
     property int part: 3
     property int section_margin: 0
+    property bool delete_mode: false
     //property bool android: true
 
     menuBar: MenuBar {
@@ -81,6 +82,13 @@ ApplicationWindow {
                 shortcut: "Ctrl+r"
                 onTriggered: {
                     addSection("section")
+                }
+            }
+            MenuItem{
+                text: qsTr("Delete section")
+                shortcut: "Ctrl+d"
+                onTriggered: {
+                    delete_mode= ! delete_mode
                 }
             }
         }
@@ -204,8 +212,73 @@ ApplicationWindow {
                 anchors.right: parent.left
                 visible: v_type == section_header || v_type == subsection_header
             }
+            Rectangle{
+                color: "red"
+                anchors.right: parent.left
+                height: parent.height
+                width: height
+                visible: delete_mode && (v_type == section_header || v_type == subsection_header || v_type == section)
+                Text{
+                    text: "X"
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    anchors.verticalCenter: parent.verticalCenter
+                    color:"white"
+                    font.bold: true
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        sections_listmodel.remove(index)
+                        delete_mode = false
+                    }
+                }
+            }
+
+            Rectangle{
+                id: grr
+
+                //color: "green"
+                anchors.left: parent.right
+                height: parent.height
+                width: height
+                Text{
+                    text:"^"
+                    font.bold: true
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        sections_listmodel.move(index,index-1,1)
+                        fix_numbering()
+                        console.debug("up")
+                    }
+                }
+            }
+            Rectangle{
+                //color: "blue"
+                anchors.left: grr.right
+                height: parent.height
+                width: height
+                Text{
+                    text: "v"
+                    font.bold: true
+                }
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        sections_listmodel.move(index,index+1,1)
+                        fix_numbering()
+                        console.debug("down")
+                    }
+                }
+            }
         }
     }
+
+
 
     ListView{
         id: sections_listview
@@ -238,6 +311,25 @@ ApplicationWindow {
     function addPart(v_text,v_readonly,v_width){
         //sections_listmodel.insert()
         sections_listmodel.append({"v_readonly": v_readonly, "v_width":v_width, "v_text": v_text, "v_type": part, "v_sec": 0, "v_sub":0})
+    }
+
+    function fix_numbering(){
+        num_of_headers=0
+        num_of_subs=0
+        var ele
+        for(var i=1;i<sections_listmodel.count;i++){
+            ele = sections_listmodel.get(i)
+            if(ele.v_type==section_header){
+                num_of_headers+=1
+                num_of_subs=0
+                ele.v_sec=num_of_headers
+            }
+            else if (ele.v_type==subsection_header){
+                num_of_subs+=1
+                ele.v_sub=num_of_subs
+                ele.v_sec=num_of_headers
+            }
+        }
     }
 
     function getLatexHeader(){
