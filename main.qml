@@ -85,7 +85,7 @@ ApplicationWindow {
                 }
             }
             MenuItem{
-                text: qsTr("Delete section")
+                text: qsTr("Manipulate sections")
                 shortcut: "Ctrl+d"
                 onTriggered: {
                     delete_mode= ! delete_mode
@@ -212,20 +212,12 @@ ApplicationWindow {
                 anchors.right: parent.left
                 visible: v_type == section_header || v_type == subsection_header
             }
-            Rectangle{
-                color: "red"
+            Image{
+                source: "close.png"
                 anchors.right: parent.left
                 height: parent.height
                 width: height
                 visible: delete_mode && (v_type == section_header || v_type == subsection_header || v_type == section)
-                Text{
-                    text: "X"
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
-                    color:"white"
-                    font.bold: true
-                }
-
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
@@ -235,18 +227,13 @@ ApplicationWindow {
                 }
             }
 
-            Rectangle{
+            Image{
                 id: grr
-
-                //color: "green"
-                anchors.left: parent.right
+                anchors.right: parent.right
                 height: parent.height
                 width: height
-                Text{
-                    text:"^"
-                    font.bold: true
-                }
-
+                source: "up.png"
+                visible: delete_mode && (v_type == section_header || v_type == subsection_header || v_type == section)
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
@@ -256,16 +243,13 @@ ApplicationWindow {
                     }
                 }
             }
-            Rectangle{
-                //color: "blue"
-                anchors.left: grr.right
+
+            Image{
+                anchors.right: grr.left
                 height: parent.height
                 width: height
-                Text{
-                    text: "v"
-                    font.bold: true
-                }
-
+                source:"down.png"
+                visible: delete_mode && (v_type == section_header || v_type == subsection_header || v_type == section)
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {

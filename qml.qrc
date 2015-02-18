@@ -5,5 +5,8 @@
         <file>developer.qml</file>
         <file>CustomTextEdit.qml</file>
         <file>Tools.qml</file>
+        <file>down.png</file>
+        <file>up.png</file>
+        <file>close.png</file>
     </qresource>
 </RCC>
