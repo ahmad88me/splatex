@@ -86,7 +86,7 @@ ApplicationWindow {
             }
             MenuItem{
                 text: qsTr("Manipulate sections")
-                shortcut: "Ctrl+d"
+                shortcut: "Ctrl+m"
                 onTriggered: {
                     delete_mode= ! delete_mode
                 }
@@ -192,7 +192,16 @@ ApplicationWindow {
         CustomTextEdit{
             text: v_text
             readonly: v_readonly
-            width: v_width
+            width: {
+                if (delete_mode){
+                    return v_width-(height*2)
+                }
+                else{
+                    return v_width
+                }
+            }
+
+            //width: v_width
             anchors.horizontalCenter: parent.horizontalCenter
             font.family: "times new roman"
             //font.pointSize: 22
@@ -217,6 +226,7 @@ ApplicationWindow {
                 anchors.right: parent.left
                 height: parent.height
                 width: height
+                z: 1
                 visible: delete_mode && (v_type == section_header || v_type == subsection_header || v_type == section)
                 MouseArea{
                     anchors.fill: parent
@@ -229,7 +239,7 @@ ApplicationWindow {
 
             Image{
                 id: grr
-                anchors.right: parent.right
+                anchors.left: parent.right
                 height: parent.height
                 width: height
                 source: "up.png"
@@ -245,7 +255,7 @@ ApplicationWindow {
             }
 
             Image{
-                anchors.right: grr.left
+                anchors.left: grr.right
                 height: parent.height
                 width: height
                 source:"down.png"

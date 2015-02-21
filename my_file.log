@@ -235,7 +235,7 @@ Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
 (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/local/texlivxlive/2014/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
 (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty
@@ -254,26 +254,30 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 17.
+./my_file.tex:26: Missing } inserted.
+<inserted text> 
+                }
+l.26  \mainmatter
+                 
+? 
+./my_file.tex:26: Emergency stop.
+<inserted text> 
+                }
+l.26  \mainmatter
+                 
+End of file on the terminal!
 
-(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 17.
-
-(/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./my_f
-ile.aux) ) 
+ 
 Here is how much of TeX's memory you used:
- 2271 strings out of 493117
- 30570 string characters out of 6135433
- 92287 words of memory out of 5000000
- 5707 multiletter control sequences out of 15000+600000
- 10434 words of font info for 41 fonts, out of 8000000 for 9000
+ 2204 strings out of 493117
+ 29688 string characters out of 6135433
+ 93279 words of memory out of 5000000
+ 5671 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 37i,1n,26p,234b,718s stack positions out of 5000i,500n,10000p,200000b,80000s
+./my_file.tex:26:  ==> Fatal error occurred, no output PDF file produced!
+ts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,4n,26p,235b,349s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cm
